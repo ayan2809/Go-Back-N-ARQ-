@@ -25,11 +25,20 @@ print(s_name, "has joined the chat room\nYou will receie messages from", s_name)
 
 while True:
 
-    m=s.recv(1024)
+    try:
+        m = s.recv(1024)
+    except:
+        break
     m=m.decode()
-    k=s.recv(1024)
+    try:
+        k = s.recv(1024)
+    except:
+        break
     k=k.decode()
-    k=int(k)
+    try:
+        k = int(k)
+    except:
+        print('The sender', s_name, 'has left the chat room. Terminating the program...')
     i=0
     a=""
     b=""
@@ -41,13 +50,19 @@ while True:
        f=random.randint(0,1)
        if(f==0):
           b="ACK Lost"
-          message = s.recv(1024)
+          try: 
+              message = s.recv(1024)
+          except:
+              break
           message = message.decode()
           s.send(b.encode())
          
        elif(f==1):
           b="ACK "+str(i)
-          message = s.recv(1024)
+          try:
+              message = s.recv(1024)
+          except:
+              break
           message = message.decode()
           
           s.send(b.encode())
@@ -56,5 +71,6 @@ while True:
           
        
     
-    print("The message received is :", m)
+    if(m != "[e]"):
+        print("The message received is :", m)
    
