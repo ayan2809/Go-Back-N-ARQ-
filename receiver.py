@@ -21,7 +21,7 @@ print("Connected...\n")
 s.send(name.encode())
 s_name = s.recv(1024)
 s_name = s_name.decode()
-print(s_name, "has joined the chat room\nEnter [e] to exit chat room\n")
+print(s_name, "has joined the chat room\nYou will receie messages from", s_name)
 
 while True:
 
