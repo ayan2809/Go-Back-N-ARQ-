@@ -43,7 +43,11 @@ conn.send(name.encode())
 
 while True:
     message = input(str("Me : "))
-    conn.send(message.encode())
+    try:
+        conn.send(message[i].encode())
+    except:
+        print('Entire message sent to receiver.')
+        break
     if message == "[e]":
         message = "Left chat room!"
         conn.send(message.encode())
